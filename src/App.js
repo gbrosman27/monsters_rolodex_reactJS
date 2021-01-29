@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; //Allows us to write html in a javascript file
 import logo from './logo.svg';
 import './App.css';
 

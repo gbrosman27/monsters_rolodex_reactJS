@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'; //Allows us to write html in a javascript file
+import ReactDOM from 'react-dom'; //The little "robot" that interacts with the DOM for us.
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
