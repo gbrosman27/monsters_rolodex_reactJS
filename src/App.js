@@ -7,7 +7,8 @@ class App extends Component{
     super(); //Calls constructor method of the Component class. Gives us access to this.state which exists on the class App.
               // Can set default value on the state object. Can use variables in the html to be rendered.
     this.state = {
-      monsters: []  
+      monsters: [],
+      searchField: ''
     };
   }
 
@@ -19,10 +20,24 @@ class App extends Component{
   }
 
   render(){ //render method returns any html we want
+    const { monsters, searchField } = this.state; //Destructered.
+
+    //Uses the filter method to sift through the monsters array according to what is typed in the searchfield. 
+    //Converted to lower case.
+    //Re-renders each time.
+    const filteredMonsters = monsters.filter(monster => 
+      monster.name.toLowerCase().includes(searchField.toLowerCase()))
+
     return ( 
-     <div className="App">
+     <div className='App'>
+
+      {/* Search Bar. 'e' is the event of the change ocurring in the search bar. */}
+       <input type='search' 
+       placeholder='search monsters' 
+       onChange={e => this.setState({searchField: e.target.value})}/>
+
        {/* Card list component with the props it requires */}
-       <CardList monsters={ this.state.monsters } />
+       <CardList monsters={ filteredMonsters } />
       </div>
     );
   }
