@@ -21,10 +21,8 @@ class App extends Component{
   render(){ //render method returns any html we want
     return ( 
      <div className="App">
-       {/* Card list component with props */}
-       <CardList> 
-         {this.state.monsters.map(monster => (<h1 key={monster.id}>{monster.name}</h1>))} 
-       </CardList>       
+       {/* Card list component with the props it requires */}
+       <CardList monsters={ this.state.monsters } />
       </div>
     );
   }
