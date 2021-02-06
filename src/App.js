@@ -1,6 +1,8 @@
 import React, { Component } from 'react'; //Component is part of React library. Allows us to write html in a javascript file.
 import { CardList } from './components/card-list/card-list.component';
+import { SearchBox } from './components/search-box/search-box.component';
 import './App.css';
+
 
 class App extends Component{
   constructor(){
@@ -10,13 +12,22 @@ class App extends Component{
       monsters: [],
       searchField: ''
     };
+
+    //Context of 'this' is whatever we pass to it via .bind method. Needed if not using arrow function.
+    //Without .bind, the handle change function below will have 'this' as undefined.
+    //this.handleChange = this.handleChange.bind(this);
   }
 
-  //Gets user data from the API and returns json.
+  //Gets user data from the API and returns json. This is a lifecycle method.
   componentDidMount(){
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
     .then(users => this.setState({monsters: users}));
+  }
+
+  //Due to arrow function, scope is wherever function is defined. Otherwise need .bind.
+  handleChange = (e) => {
+    this.setState({ searchField: e.target.value });
   }
 
   render(){ //render method returns any html we want
@@ -28,15 +39,13 @@ class App extends Component{
     const filteredMonsters = monsters.filter(monster => 
       monster.name.toLowerCase().includes(searchField.toLowerCase()))
 
+    // Return the component with the props they require.
     return ( 
      <div className='App'>
+       <SearchBox 
+       placeholder='search monsters'
+       handleChange={this.handleChange} />
 
-      {/* Search Bar. 'e' is the event of the change ocurring in the search bar. */}
-       <input type='search' 
-       placeholder='search monsters' 
-       onChange={e => this.setState({searchField: e.target.value})}/>
-
-       {/* Card list component with the props it requires */}
        <CardList monsters={ filteredMonsters } />
       </div>
     );
