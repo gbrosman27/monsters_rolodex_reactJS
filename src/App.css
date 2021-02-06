@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+h1 {
+  -webkit-text-stroke-width: .1px;
+  -webkit-text-stroke-color: rgb(0, 0, 0);
+  font-family: 'Bigelow Rules', cursive;
+  font-size: 100px;
+  color: rgb(9, 161, 85);  
+}

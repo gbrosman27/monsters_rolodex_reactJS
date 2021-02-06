@@ -42,6 +42,7 @@ class App extends Component{
     // Return the component with the props they require.
     return ( 
      <div className='App'>
+       <h1>Monster's Rolodex</h1>
        <SearchBox 
        placeholder='search monsters'
        handleChange={this.handleChange} />
